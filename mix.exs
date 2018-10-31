@@ -18,11 +18,19 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
     ]
   end
 
+  """
+  Removing  `eventstore`  because   it  is  listed  in
+  `deps`   therefore   it   is   added   automatically
+  to  `:applications`.   Although  this  app   is  not
+  supervised.
+
+  https://hexdocs.pm/mix/Mix.Tasks.Compile.App.html
+  """
   def application do
     [
       extra_applications: [
         :logger,
-        :eventstore
+        # :eventstore
       ]
     ]
   end
@@ -37,12 +45,30 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp elixirc_paths(_), do: ["lib"]
 
+  """
+  NOTE 2018-10-30_2231
+
+  + Remove Commanded as a dependency, see issue #1.
+
+    => Maybe adding it as a test dependency?
+
+  + Also removing EventStore.
+
+    I  am  biased  toward  more  explicit  configuration
+    and the  `EventStore` application will  be available
+    in   a   project,    therefore   the   mappings   in
+    `./lib/event_store_adapter.ex` will work.
+
+    => Test dependency?
+
+  + The `Mox` idea seems to be  a nice approach as a 3rd
+    option to the ones mentioned in issue #1. Explore it
+    further.
+  """
   defp deps do
     [
-      # {:commanded, ">= 0.16.0", runtime: false},
-      {:commanded, github: "commanded/commanded", branch: "master", runtime: false},
-      # {:eventstore, ">= 0.14.0"},
-      {:eventstore, github: "commanded/eventstore", branch: "master"},
+      # {:commanded, github: "commanded/commanded", branch: "master", runtime: false},
+      {:eventstore, "~> 0.15"},
 
       # Build & test tools
       {:ex_doc, "~> 0.19", only: :dev},
