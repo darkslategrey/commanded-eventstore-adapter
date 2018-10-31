@@ -118,7 +118,9 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   defp deps do
     [
       # {:commanded, github: "commanded/commanded", branch: "master", runtime: false},
-      {:eventstore, "~> 0.15"},
+
+      # {:eventstore, "~> 0.15"},
+      {:eventstore, github: "toraritte/eventstore", branch: "master"},
 
       # Build & test tools
       {:ex_doc, "~> 0.19", only: :dev},
