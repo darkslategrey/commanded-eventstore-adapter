@@ -18,18 +18,16 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
     ]
   end
 
-  """
-  NOTE 2018-10-30_2231
-
-  Removing  `eventstore`  because   it  is  listed  in
-  `deps`  therefore  it   is  added  automatically  to
-  `:applications`. This  app also  does not  start any
-  processes,  it  just  maps  behaviour  callbacks  to
-  EventStore functions. EventStore  should be added to
-  a projects `:extra_applications` anyway.
-
-  https://hexdocs.pm/mix/Mix.Tasks.Compile.App.html
-  """
+  # NOTE 2018-10-30_2231
+  #
+  # Removing  `eventstore`  because   it  is  listed  in
+  # `deps`  therefore  it   is  added  automatically  to
+  # `:applications`. This  app also  does not  start any
+  # processes,  it  just  maps  behaviour  callbacks  to
+  # EventStore functions. EventStore  should be added to
+  # a projects `:extra_applications` anyway.
+  #
+  # https://hexdocs.pm/mix/Mix.Tasks.Compile.App.html
   def application do
     [
       extra_applications: [
